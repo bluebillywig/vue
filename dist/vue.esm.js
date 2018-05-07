@@ -1010,7 +1010,14 @@ function defineReactive (
       } else {
         val = newVal;
       }
-      childOb = !shallow && observe(newVal);
+      
+      try {
+        childOb = !shallow && observe(newVal);
+      }
+      catch(error) {
+         //console.error(error);
+      }
+      
       dep.notify();
     }
   });
